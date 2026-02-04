@@ -4,6 +4,12 @@ using namespace std;
 
 //simple use case. 
 int main() {
-    cout << "Hello World! \n";
-    return 0;
+    int x, y;
+    int sum;
+    cout << "Type a number: ";
+    cin >> x;
+    cout << "Type another number: ";
+    cin >> y;
+    sum = x + y;
+    cout << "Sum is: " << sum << "\n";
 } 
