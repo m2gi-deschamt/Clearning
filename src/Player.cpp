@@ -12,3 +12,15 @@ void Player::display() {
     else cout << "Female";
     cout << endl;
 }
+
+std::string Player::getName() const {
+    return name;
+}
+
+int Player::getAge() const {
+    return age;
+}
+
+Gender Player::getGender() const {
+    return gender;
+}

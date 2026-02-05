@@ -19,5 +19,8 @@ private:
 public:
     Player(string name, int age, Gender gender);
     void display();
+    int getAge() const;
+    string getName() const;
+    Gender getGender() const;
 };
 #endif
