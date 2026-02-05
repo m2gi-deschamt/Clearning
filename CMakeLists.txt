@@ -32,7 +32,7 @@ FetchContent_MakeAvailable(catch2)
 
 # Exécutable de tests
 add_executable(tests
-    tests/test_player.cpp
+    test/test_player.cpp
 )
 
 # Inclure tes headers et ceux de Catch2
