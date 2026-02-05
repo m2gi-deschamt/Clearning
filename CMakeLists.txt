@@ -32,6 +32,8 @@ FetchContent_MakeAvailable(catch2)
 
 # Exécutable de tests
 add_executable(tests
+    test/test_board.cpp
+    test/test_game.cpp
     test/test_player.cpp
 )
 

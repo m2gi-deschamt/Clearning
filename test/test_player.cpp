@@ -9,3 +9,7 @@ TEST_CASE("Addition simple", "[math]") {
     REQUIRE(add(-1, 1) == 0);
     REQUIRE(add(0, 0) == 0);
 }
+
+TEST_CASE("Addition difficile", "[math]") {
+    REQUIRE(add(23, 34) == 57);
+}
