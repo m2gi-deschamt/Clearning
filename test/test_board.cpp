@@ -12,3 +12,9 @@ TEST_CASE("Add piece", "[board]") {
     board.cellAt(1,1).setPiece(std::make_unique<Pawn>());
     REQUIRE(board.cellAt(1,1).getPiece()->getName() == "pawn");
 }
+
+TEST_CASE("have piece") {
+    Board board(6, 7);
+    board.cellAt(1,1).setPiece(std::make_unique<Pawn>());
+    REQUIRE(board.havePiece(board.cellAt(1,1)));
+}

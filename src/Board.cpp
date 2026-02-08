@@ -8,6 +8,11 @@ Board::Board(int r, int c) : rows(r), columns(c) {
     }
 }
 
+bool Board::havePiece(int row, int col) const {
+    return !this->cellAt(row,col).isEmpty();
+}
+
+
 
 // Accès aux cellules
 Cell& Board::cellAt(int row, int col) {

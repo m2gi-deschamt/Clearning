@@ -34,6 +34,7 @@ private:
     int columns;
 public: 
     Board(int rows, int columns);
+    bool havePiece(int row, int col) const;
     Cell& cellAt(int row, int col); 
     const Cell& cellAt(int row, int col) const; 
     int getRows() const { return rows; } 
