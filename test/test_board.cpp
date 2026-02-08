@@ -1,13 +1,14 @@
 #include <catch2/catch_test_macros.hpp>
+#include "Board.hpp"
 
-int mut(int a, int b) {
-    return a * b;
+TEST_CASE("Get columns", "[board]") {
+    Board board(6, 7);
+    REQUIRE(board.getCols() == 7);
 }
 
-TEST_CASE("Multiplication simple", "[math]") {
-    REQUIRE(mut(4, 3) == 12);
-}
-
-TEST_CASE("Multiplication difficile", "[math]") {
-    REQUIRE(mut(3, 6) == 18);
+TEST_CASE("Add piece", "[board]") {
+    Board board(6, 7);
+    board.cellAt(1,1).setPiece(std::make_unique<Piece>("pawn"));
+    
+    REQUIRE(board.cellAt(1,1).getPiece()->getName() == "pawn");
 }

@@ -2,10 +2,6 @@
 #include "Game.hpp"
 #include "Player.hpp"
 
-int sub(int a, int b) {
-    return a - b;
-}
-
 TEST_CASE("Add players", "[player]") {
     Player player1("Thibaud", 32, MALE);
     Player player2("Olivier", 24, MALE);
