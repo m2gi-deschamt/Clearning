@@ -9,16 +9,9 @@
 
 using std::vector;
 
-// Classe Piece
-class Piece {
-private:
-    std::string name;
-public:
-    Piece(const std::string& n) : name(n) {}
-    std::string getName() const { return name; }
-};
+#include "Piece.hpp"
 
-// Classe Cell
+
 class Cell {
 private:
     std::unique_ptr<Piece> piece;
@@ -34,7 +27,6 @@ public:
     void removePiece() { piece.reset(); }
 };
 
-// Classe Board
 class Board {
 private:
     vector<vector<Cell>> cells;

@@ -8,6 +8,7 @@ add_library(game
     src/Player.cpp
     src/Board.cpp
     src/Game.cpp
+    src/Piece.cpp
 )
 
 target_include_directories(game PUBLIC include)
