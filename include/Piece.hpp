@@ -11,4 +11,10 @@ public:
     std::string getName() const { return name; }
 };
 
+class Pawn : public Piece {
+public:
+    Pawn() : Piece("pawn") {}
+};
+
+
 #endif
