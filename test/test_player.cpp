@@ -1,15 +1,10 @@
 #include <catch2/catch_test_macros.hpp>
+#include "Player.hpp"
 
-int add(int a, int b) {
-    return a + b;
-}
+TEST_CASE("create player", "[math]") {
+    Player player1("Thibaud", 24, MALE);
 
-TEST_CASE("Addition simple", "[math]") {
-    REQUIRE(add(2, 3) == 5);
-    REQUIRE(add(-1, 1) == 0);
-    REQUIRE(add(0, 0) == 0);
-}
-
-TEST_CASE("Addition difficile", "[math]") {
-    REQUIRE(add(23, 34) == 57);
+    REQUIRE(player1.getAge() == 24);
+    REQUIRE(player1.getName() == "Thibaud");
+    REQUIRE(player1.getGender() == MALE);
 }

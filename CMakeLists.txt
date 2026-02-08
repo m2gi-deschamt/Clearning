@@ -4,17 +4,17 @@ project(Puissance4 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# -------------------------
-# Exécutable principal
-# -------------------------
-add_executable(puissance4
-    main.cpp
+add_library(game
     src/Player.cpp
     src/Board.cpp
     src/Game.cpp
 )
 
-target_include_directories(puissance4 PRIVATE include)
+target_include_directories(game PUBLIC include)
+
+add_executable(puissance4 main.cpp)
+target_link_libraries(puissance4 PRIVATE game)
+
 
 # -------------------------
 # Tests
@@ -41,7 +41,7 @@ add_executable(tests
 target_include_directories(tests PRIVATE include)
 
 # Lier Catch2
-target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
+target_link_libraries(tests PRIVATE game Catch2::Catch2WithMain)
 
 # Découvrir automatiquement les tests
 include(CTest)
