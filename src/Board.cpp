@@ -1,20 +1,33 @@
 #include "Board.hpp"
+#include <cassert>
 
-// Constructeur
-Board::Board(int r, int c) : rows(r), columns(c) {
-    cells.resize(r);
-    for (int i = 0; i < r; ++i) {
-        cells[i].resize(c);
+Board::Board(int r, int c) : rows(r), columns(c), cells(r) {
+    for (auto& row : cells) {
+        row.reserve(c);               
+        for (int i = 0; i < c; ++i) {
+            row.emplace_back(Cell()); 
+        }
     }
 }
 
-bool Board::havePiece(int row, int col) const {
-    return !this->cellAt(row,col).isEmpty();
+bool Board::havePiece(Position position) const {
+    return cells[position.row][position.col].isEmpty();
 }
 
+void Board::placePiece(Position position, std::unique_ptr<Piece> piece)
+{
+    assert(piece && "Cannot place a null piece");
 
+    Cell& cell = cells[position.row][position.col];
+    assert(cell.isEmpty() && "Cell already contains a piece");
 
-// Accès aux cellules
+    cell.setPiece(std::move(piece));
+}
+
+void Board::movePiece(Position from, Position to) {
+    cells[to.row][to.col].setPiece(cells[from.row][from.col].takePiece());
+}
+
 Cell& Board::cellAt(int row, int col) {
     if (row < 0 || row >= rows || col < 0 || col >= columns) {
         throw std::out_of_range("Board::cellAt: indices out of range");
@@ -42,3 +55,4 @@ void Board::display() const {
         std::cout << "\n";
     }
 }
+

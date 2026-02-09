@@ -59,8 +59,10 @@ class GameInstance {
         void start();
         void play();
         void pause();
+       
         void addPlayer(const Player &player);
         const set<Player>& getPlayers() const;
+        
         void display();
 };
 #endif

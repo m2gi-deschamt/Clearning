@@ -11,20 +11,30 @@ using std::vector;
 
 #include "Piece.hpp"
 
+struct Position {
+    int row;
+    int col;
+};
 
 class Cell {
 private:
     std::unique_ptr<Piece> piece;
-public:
+
     Cell() : piece(nullptr) {}
+
+    std::unique_ptr<Piece> takePiece() {
+        return std::move(piece);
+    }
+
+    void setPiece(std::unique_ptr<Piece> p) { piece = std::move(p); }
+
+    void removePiece() { piece.reset(); }
 
     bool isEmpty() const { return piece == nullptr; }
 
     Piece* getPiece() const { return piece.get(); }
 
-    void setPiece(std::unique_ptr<Piece> p) { piece = std::move(p); }
-
-    void removePiece() { piece.reset(); }
+    friend class Board;
 };
 
 class Board {
@@ -32,14 +42,20 @@ private:
     vector<vector<Cell>> cells;
     int rows;
     int columns;
-public: 
-    Board(int rows, int columns);
-    bool havePiece(int row, int col) const;
+
+    void movePiece(Position from, Position to); 
+    bool havePiece(Position position) const;
+    void placePiece(Position position, std::unique_ptr<Piece> piece);
+    
     Cell& cellAt(int row, int col); 
-    const Cell& cellAt(int row, int col) const; 
+    const Cell& cellAt(int row, int col) const;
+     
     int getRows() const { return rows; } 
     int getCols() const { return columns; }
     void display() const;
+    Board(int rows, int columns);
+
+    friend class GameInstance;
 };
 
 #endif
