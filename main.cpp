@@ -3,7 +3,7 @@
 
 int main() {
     Player playerOne("Thibaud", 25, MALE);
-    Puissance4 game;
+    const Puissance4 game;
     
 
     GameInstance firstGame(game);

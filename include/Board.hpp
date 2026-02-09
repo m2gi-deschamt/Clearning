@@ -26,7 +26,7 @@ private:
         return std::move(piece);
     }
 
-    void setPiece(std::unique_ptr<Piece> p) { piece = std::move(p); }
+    bool setPiece(std::unique_ptr<Piece> p) { piece = std::move(p); return true;}
 
     void removePiece() { piece.reset(); }
 

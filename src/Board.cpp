@@ -11,7 +11,7 @@ Board::Board(int r, int c) : rows(r), columns(c), cells(r) {
 }
 
 bool Board::havePiece(Position position) const {
-    return cells[position.row][position.col].isEmpty();
+    return !cells[position.row][position.col].isEmpty();
 }
 
 void Board::placePiece(Position position, std::unique_ptr<Piece> piece)

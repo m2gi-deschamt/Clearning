@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+
 bool Puissance4::isMoveValid(int row, int col, const Board& board) const {
     return true;
 }
@@ -57,4 +58,12 @@ void GameInstance::display() {
 
 const set<Player>& GameInstance::getPlayers() const {
     return players;
+}
+
+void GameInstance::placePiece(Position position, std::unique_ptr<Piece> piece) {
+    board.placePiece(position, std::move(piece));
+}
+
+bool GameInstance::havePiece(Position pos) const {
+    return board.havePiece(pos);
 }

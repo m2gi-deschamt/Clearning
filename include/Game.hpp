@@ -4,6 +4,7 @@
 
 #include "Board.hpp"
 #include "Player.hpp"
+#include "Piece.hpp"
 
 #include <string>
 #include <set>
@@ -38,6 +39,7 @@ class Puissance4 : public Game {
         int board_columns = 7;
     
     public:
+        Puissance4(){};
         bool isMoveValid(int row, int col, const Board& board) const override;
         bool checkVictory(const Board& board) const override;
         std::string getName() const override;
@@ -63,6 +65,9 @@ class GameInstance {
         void addPlayer(const Player &player);
         const set<Player>& getPlayers() const;
         
+        void placePiece(Position position, std::unique_ptr<Piece> piece);
+
+        bool havePiece(Position pos) const;
         void display();
 };
 #endif
