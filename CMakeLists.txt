@@ -13,12 +13,23 @@ set(IMGUI_SOURCES
     ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
 )
 
+set(GAME_DIR src)
+set(GAME_SOURCES
+    ${GAME_DIR}/Player.cpp
+    ${GAME_DIR}/Board.cpp
+    ${GAME_DIR}/Game.cpp
+    ${GAME_DIR}/Piece.cpp
+)
+
+set(TEST_DIR test)
+set(TEST_SOURCES
+    ${TEST_DIR}/test_board.cpp
+    ${TEST_DIR}/test_game.cpp
+    ${TEST_DIR}/test_player.cpp
+)
 
 add_library(game
-    src/Player.cpp
-    src/Board.cpp
-    src/Game.cpp
-    src/Piece.cpp
+    ${GAME_SOURCES}
 )
 
 target_include_directories(game PUBLIC include)
@@ -46,9 +57,7 @@ FetchContent_MakeAvailable(catch2)
 
 # Exécutable de tests
 add_executable(tests
-    test/test_board.cpp
-    test/test_game.cpp
-    test/test_player.cpp
+    ${TEST_SOURCES}
 )
 
 # Inclure tes headers et ceux de Catch2
