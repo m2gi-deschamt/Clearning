@@ -1,20 +1,31 @@
-#include <catch2/catch_test_macros.hpp>
+#include <gtest/gtest.h>
 #include "Board.hpp"
 #include "Piece.hpp"
 #include "Game.hpp"
 
 using namespace std;
 
-TEST_CASE("have piece") {
-    const Puissance4 puissance4;
-    GameInstance game(puissance4);
-    game.placePiece({1,1}, std::make_unique<Pawn>());
-    REQUIRE(game.havePiece({1,1}) == true);
+
+class GameInstanceTest : public ::testing::Test {
+protected:
+    Puissance4 puissance4;
+    GameInstance game;
+
+    GameInstanceTest() : game(puissance4) {}
+
+    void SetUp() override {
+        game.placePiece({1,1}, std::make_unique<Pawn>());
+    }
+
+    void TearDown() override {
+        // Optionnel : nettoyage après chaque test
+    }
+};
+
+TEST_F(GameInstanceTest, HavePieceAt11) {
+    EXPECT_TRUE(game.havePiece({1,1}));
 }
 
-TEST_CASE("No piece") {
-    const Puissance4 puissance4;
-    GameInstance game(puissance4);
-    game.placePiece({1,3}, std::make_unique<Pawn>());
-    REQUIRE(game.havePiece({1,1}) == false);
+TEST_F(GameInstanceTest, NoPieceAt12) {
+    EXPECT_FALSE(game.havePiece({1,2}));
 }

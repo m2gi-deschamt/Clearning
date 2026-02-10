@@ -23,6 +23,7 @@ set(GAME_SOURCES
 
 set(TEST_DIR test)
 set(TEST_SOURCES
+    ${TEST_DIR}/test_main.cpp
     ${TEST_DIR}/test_board.cpp
     ${TEST_DIR}/test_game.cpp
     ${TEST_DIR}/test_player.cpp
@@ -44,32 +45,25 @@ target_link_libraries(puissance4 PRIVATE game)
 # -------------------------
 # Tests
 # -------------------------
-enable_testing()
 
-# Télécharger Catch2
 include(FetchContent)
 FetchContent_Declare(
-    catch2
-    GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-    GIT_TAG v3.12.0
+  googletest
+  GIT_REPOSITORY https://github.com/google/googletest.git
+  GIT_TAG v1.16.0 
 )
-FetchContent_MakeAvailable(catch2)
+FetchContent_MakeAvailable(googletest)
+
+enable_testing()
 
 # Exécutable de tests
 add_executable(tests
     ${TEST_SOURCES}
 )
 
-# Inclure tes headers et ceux de Catch2
-target_include_directories(tests PRIVATE include)
+target_link_libraries(tests PRIVATE gtest_main game)
 
-# Lier Catch2
-target_link_libraries(tests PRIVATE game Catch2::Catch2WithMain)
-
-# Découvrir automatiquement les tests
-include(CTest)
-include(Catch)
-catch_discover_tests(tests)
+add_test(NAME RunAllTests COMMAND tests)
 
 #------------------------------------
 #UI - variable alrealy set up on top-
